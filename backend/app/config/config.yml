@@ -37,6 +37,14 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 
+nelmio_cors:
+        paths:
+            '^/':
+                allow_origin: ['http://localhost:4200']
+                allow_headers: ['origin', 'content-type']
+                allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
+                max_age: 3600
+
 # Doctrine Configuration
 doctrine:
     dbal:
