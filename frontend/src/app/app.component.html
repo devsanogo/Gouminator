@@ -10,7 +10,7 @@
       <span class="example-spacer"></span>
       <div class="hidden-xs">
         <a data-toggle="modal" data-target="#listModal" (click)="getList()" mat-button>Liste des volumes</a>
-        <a mat-button>Vider le cache</a>
+        <a mat-button data-toggle="modal" data-target="#clearCache" (click)="removeCache()">Vider le cache</a>
       </div>
       <div class="response visible-xs">
           <button mat-button flex [matMenuTriggerFor]="menu">
@@ -18,7 +18,7 @@
           </button>
           <mat-menu #menu="matMenu">
               <a data-toggle="modal" data-target="#listModal" (click)="getList()" mat-button>Liste des volumes</a>
-            <button mat-menu-item>Vider le cache</button>
+            <button data-toggle="modal" data-target="#clearCache" (click)="removeCache()" mat-menu-item>Vider le cache</button>
           </mat-menu>
       </div>
     </mat-toolbar-row>
@@ -60,6 +60,27 @@
     
       </div>
   </div>
+  
+  <div id="clearCache" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+      
+        <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Suppression du cache</h4><br>
+          <div [hidden]="!error" class="alert alert-danger" role="alert">
+            <span class="">Error: {{ error }}</span>
+            <mat-icon matSuffix class="pull-right">error</mat-icon>
+          </div>
+          <p *ngIf="loading == false">
+            {{ responseClear }}
+          </p>
+          <mat-spinner [diameter]="20" *ngIf="loading == true"></mat-spinner>
+        </div>
+        </div>
+      
+      </div>
+    </div>
   
   <router-outlet></router-outlet>
   

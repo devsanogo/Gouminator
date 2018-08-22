@@ -29,4 +29,17 @@ export class AppComponent {
         );
   }
 
+  removeCache() {
+    this.loading = true;
+    this.dataService
+        .clearCache()
+        .then(
+            data => {
+              this.loading = false;
+              this.responseClear = data
+            },
+            error => this.error = error.message
+        );
+  }
+
 }

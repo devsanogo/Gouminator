@@ -26,4 +26,13 @@ export class DataService {
         .catch(error => console.log(error))
   }
 
+  clearCache() {
+    let url     = 'http://localhost:4001/remove-cache';
+    return this.http
+        .get(url)
+        .toPromise()
+        .then(resp => resp.json())
+        .catch(error => console.log(error))
+  }
+
 }
