@@ -9,7 +9,7 @@
     <mat-toolbar-row>
       <span class="example-spacer"></span>
       <div class="hidden-xs">
-        <a mat-button>Liste des volumes</a>
+        <a data-toggle="modal" data-target="#listModal" (click)="getList()" mat-button>Liste des volumes</a>
         <a mat-button>Vider le cache</a>
       </div>
       <div class="response visible-xs">
@@ -17,10 +17,49 @@
               <mat-icon class="example-icon">menu</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-              <a mat-button>Liste des volumes</a>
+              <a data-toggle="modal" data-target="#listModal" (click)="getList()" mat-button>Liste des volumes</a>
             <button mat-menu-item>Vider le cache</button>
           </mat-menu>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
-<router-outlet></router-outlet>
+  
+  <div id="listModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+    
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Liste des volumes de sphere calculées</h4>
+          </div>
+          <div class="modal-body">
+          <div [hidden]="!error" class="alert alert-danger" role="alert">
+            <span class="">Error: {{ error }}</span>
+            <mat-icon matSuffix class="pull-right">error</mat-icon>
+          </div>
+          <table *ngIf="loading == false" class="table table-bordered table-striped table-condensed">  
+              <thead>  
+                <tr>  
+                  <th>Rayon</th>  
+                  <th>Volume</th>  
+                </tr>  
+              </thead>  
+              <tbody>  
+                <tr *ngFor="let list of responseList">  
+                  <td>{{ list.radius }}</td>  
+                  <td>{{ list.volume }}</td>   
+                </tr>  
+              </tbody>  
+            </table> 
+        <mat-spinner [diameter]="20" *ngIf="loading == true"></mat-spinner>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+    
+      </div>
+  </div>
+  
+  <router-outlet></router-outlet>
+  

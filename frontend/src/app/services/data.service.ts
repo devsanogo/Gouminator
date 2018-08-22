@@ -17,4 +17,13 @@ export class DataService {
         .catch(error => console.log(error))
   }
 
+  getAllVolums() {
+    let url     = 'http://localhost:4001/volumes';
+    return this.http
+        .get(url)
+        .toPromise()
+        .then(resp => resp.json())
+        .catch(error => console.log(error))
+  }
+
 }
