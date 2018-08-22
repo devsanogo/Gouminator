@@ -22,10 +22,14 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { IndexComponent } from './home/index/index.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    IndexComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
