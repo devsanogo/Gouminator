@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { 
@@ -24,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './home/index/index.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -44,13 +46,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatAutocompleteModule,
     MatMenuModule,
     MatSidenavModule,
+    ReactiveFormsModule,
     MatProgressSpinnerModule, 
     MatListModule,
     HttpModule,
     MatDialogModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

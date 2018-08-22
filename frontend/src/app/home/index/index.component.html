@@ -1,3 +1,38 @@
-<p>
-  index works!
-</p>
+
+<div class="container auth-content">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<legend><h1>Entrer le rayon SVP</h1></legend>
+			<div [hidden]="!error" class="alert alert-danger" role="alert">
+				<span class="">Error: {{ error }}</span>
+				<mat-icon matSuffix class="pull-right">error</mat-icon>
+			</div>
+			<div *ngIf="apiResponse != null" class="alert alert-info alert-dismissible">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Resultat :</strong> <br>
+				rayon : {{ apiResponse.radius }} <br>
+				volume : {{ apiResponse.volume }}
+			</div>
+			<mat-card>
+				<form [formGroup]="apiForm" (ngSubmit)="onSubmit()">
+					<p>
+						<mat-form-field appearance="outline">
+							<mat-label>Rayon</mat-label>
+							<input autocomplete="off" type="text" size="30" formControlName="rayon" matInput placeholder="Entrer le rayon SVP *">
+							<mat-icon matSuffix>input</mat-icon>
+							<mat-hint>Rayon de la sphere</mat-hint>
+						</mat-form-field>
+					</p>
+					<hr>
+					<button type="submit" *ngIf="loading == false" class="btn btn-success" [disabled]="!apiForm.valid">
+						Valider
+					</button>
+					<mat-spinner [diameter]="20" *ngIf="loading == true"></mat-spinner>
+				</form>
+			</mat-card>
+		</div>
+		<div class="col-md-4">
+    </div>
+	</div>
+</div>
